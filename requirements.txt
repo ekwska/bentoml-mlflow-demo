@@ -1,6 +1,6 @@
 torch
 torchvision
-bentoml
+bentoml[io-image]
 
 pip
 bump2version
@@ -11,6 +11,8 @@ tox
 coverage
 Sphinx
 twine
+Pillow
+numpy
 
 pytest
 black
