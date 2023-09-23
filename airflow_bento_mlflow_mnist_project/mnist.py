@@ -34,7 +34,7 @@ def parse_args():
     parser.add_argument(
         "--epochs",
         type=int,
-        default=2,
+        default=3,
         metavar="N",
         help="number of epochs to train (default: 2)",
     )
@@ -127,6 +127,7 @@ def train(model, args, train_epoch, train_loader):
     train_optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
+        logging.info(f"BATCH: {batch_idx}/{len(train_loader)}")
         if args.cuda:
             data, target = data.cuda(), target.cuda()
         data, target = Variable(data), Variable(target)
@@ -145,7 +146,7 @@ def train(model, args, train_epoch, train_loader):
                     loss.data.item(),
                 )
             )
-        return model
+    return model
 
 
 def test(model, args, test_loader):
