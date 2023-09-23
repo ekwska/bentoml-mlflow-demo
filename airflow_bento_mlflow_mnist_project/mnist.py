@@ -127,7 +127,6 @@ def train(model, args, train_epoch, train_loader):
     train_optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
-        logging.info(f"BATCH: {batch_idx}/{len(train_loader)}")
         if args.cuda:
             data, target = data.cuda(), target.cuda()
         data, target = Variable(data), Variable(target)
