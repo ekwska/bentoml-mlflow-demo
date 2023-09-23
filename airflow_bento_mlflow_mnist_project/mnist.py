@@ -4,12 +4,15 @@ Example code from https://github.com/lanpa/tensorboard-pytorch-examples/blob/mas
 
 from __future__ import print_function
 import argparse
+import logging
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.autograd import Variable
+from bentoml.pytorch import save_model
+from datetime import datetime
 
 
 def parse_args():
@@ -33,7 +36,7 @@ def parse_args():
         type=int,
         default=2,
         metavar="N",
-        help="number of epochs to train (default: 10)",
+        help="number of epochs to train (default: 2)",
     )
     parser.add_argument(
         "--lr",
@@ -69,6 +72,7 @@ def parse_args():
 
 
 def create_train_test_loaders(args, kwargs):
+    logging.info("Create train and test loaders...")
     train_loader = torch.utils.data.DataLoader(
         datasets.MNIST(
             "../data",
@@ -80,7 +84,7 @@ def create_train_test_loaders(args, kwargs):
         ),
         batch_size=args.batch_size,
         shuffle=True,
-        **kwargs
+        **kwargs,
     )
     test_loader = torch.utils.data.DataLoader(
         datasets.MNIST(
@@ -92,8 +96,10 @@ def create_train_test_loaders(args, kwargs):
         ),
         batch_size=args.batch_size,
         shuffle=True,
-        **kwargs
+        **kwargs,
     )
+    logging.info(train_loader)
+    logging.info(test_loader)
     return train_loader, test_loader
 
 
@@ -117,6 +123,7 @@ class Net(nn.Module):
 
 
 def train(model, args, train_epoch, train_loader):
+    logging.info("Training model")
     train_optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     model.train()
     for batch_idx, (data, target) in enumerate(train_loader):
@@ -129,7 +136,7 @@ def train(model, args, train_epoch, train_loader):
         loss.backward()
         train_optimizer.step()
         if batch_idx % args.log_interval == 0:
-            print(
+            logging.info(
                 "Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(
                     train_epoch,
                     batch_idx * len(data),
@@ -138,9 +145,11 @@ def train(model, args, train_epoch, train_loader):
                     loss.data.item(),
                 )
             )
+        return model
 
 
 def test(model, args, test_loader):
+    logging.info("Testing model")
     model.eval()
     test_loss = 0
     correct = 0
@@ -156,7 +165,7 @@ def test(model, args, test_loader):
         correct += pred.eq(target.data).cpu().sum()
 
     test_loss /= len(test_loader.dataset)
-    print(
+    logging.info(
         "\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n".format(
             test_loss,
             correct,
@@ -166,17 +175,7 @@ def test(model, args, test_loader):
     )
 
 
-# if __name__ == "__main__":
-#     args, kwargs = parse_args()
-#     torch.manual_seed(args.seed)
-#     if args.cuda:
-#         torch.cuda.manual_seed(args.seed)
-#
-#     training_loader, testing_loader = create_train_test_loaders()
-#     model = Net()
-#     if args.cuda:
-#         model.cuda()
-#
-#     for epoch in range(1, args.epochs + 1):
-#         train(epoch, training_loader)
-#         test(testing_loader)
+def save_bentoml_model(model):
+    model_name = datetime.now().strftime("%d-%m-%y-%H_%M_mnist")
+    save_model(model_name, model)
+    logging.info(f"Model saved under name '{model_name}")
