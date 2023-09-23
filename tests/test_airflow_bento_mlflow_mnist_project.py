@@ -5,7 +5,7 @@
 import pytest
 
 
-from airflow_bento_mlflow_mnist_project import airflow_bento_mlflow_mnist_project
+from airflow_bento_mlflow_mnist_project import main
 
 
 @pytest.fixture
