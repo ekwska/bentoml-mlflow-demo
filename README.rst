@@ -49,7 +49,7 @@ Steps
 1. Create a virtual environment :code:`python3.11 -m venv .venv`
 2. Activate the virtual environment with :code:`.venv/bin/activate`
 2. Install the development packages with :code:`pip install -r requirements.txt`
-3. Run a training session with :code:`python3 airflow_bento_mlflow_mnist_project/mnist.py`
+3. Run a training session with :code:`python3 airflow_bento_mlflow_mnist_project/main.py`
 4. Test out the server with :code:`bentoml serve bentoml_service.py:svc --working-dir airflow_bento_mlflow_mnist_project --reload`
 5. Containerize the model with :code:`bentoml build -f bentofile.yaml airflow_bento_mlflow_mnist_project --containerize`
 
