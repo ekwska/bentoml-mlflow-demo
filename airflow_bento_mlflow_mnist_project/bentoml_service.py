@@ -1,31 +1,29 @@
-import bentoml
-from bentoml.io import Image as BMLImage
-from bentoml.io import NumpyNdarray
+from __future__ import annotations
+
+import typing as t
+from typing import TYPE_CHECKING
 from torchvision import transforms
-from typing import Any
 
-from numpy.typing import NDArray
 import numpy as np
+from PIL.Image import Image as PILImage
 
+import bentoml
 
-def create_service(service_name, runner):
-    svc = bentoml.Service(service_name, runners=[runner])
-
-    @svc.api(input=BMLImage(), output=NumpyNdarray(dtype="float32"))
-    async def predict_image(f: BMLImage) -> NDArray[Any]:
-        # TODO: The image is empty here so predictions can't be made, investigate.
-        transform = transforms.Compose(
-            [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
-        )
-        arr = np.array(transform(f))
-        assert arr.shape == (1, 28, 28)
-
-        # We are using greyscale image and our PyTorch model expect one
-        # extra channel dimension
-        return await runner.async_run(arr)
-
-    return svc
-
+if TYPE_CHECKING:
+    from numpy.typing import NDArray
 
 mnist_runner = bentoml.pytorch.get("23-09-23-16_39_mnist:oc5oqas2e6jhsblo").to_runner()
-svc = create_service("mnist_service", mnist_runner)
+
+svc = bentoml.Service(name="mnist_service", runners=[mnist_runner])
+
+
+@svc.api(input=bentoml.io.Image(), output=bentoml.io.NumpyNdarray())
+async def predict(f: PILImage) -> NDArray[t.Any]:
+    arr = np.array(f) / 255.0
+    transform = transforms.Compose(
+        [transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))]
+    )
+    arr = np.array(transform(arr))
+    arr = np.expand_dims(arr, (0, 3)).squeeze(3)
+    res = await mnist_runner.async_run(arr)
+    return res.argmax()
