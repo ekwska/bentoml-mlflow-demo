@@ -10,28 +10,26 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = ["torch", "torchvision", "bentoml[io-image]", "Pillow", "numpy"]
 
-test_requirements = ['pytest>=3', ]
+test_requirements = ['pytest>=3', "black", "flake8"]
 
 setup(
     author="ekwska",
     author_email='ekwska0@protonmail.com',
-    python_requires='>=3.6',
+    python_requires='>=3.11',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.11',
     ],
     description="A project to run a full end to end ML system, using MLFlow for tracking, Airflow for pipeline construction and BentoML for packaging,",
     entry_points={
         'console_scripts': [
-            'airflow_bento_mlflow_mnist_project=airflow_bento_mlflow_mnist_project.cli:main',
+            'airflow_bento_mlflow_mnist_project=airflow_bento_mlflow_mnist_project.main:main',
         ],
     },
     install_requires=requirements,
