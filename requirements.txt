@@ -16,3 +16,4 @@ numpy
 
 pytest
 black
+flake8
