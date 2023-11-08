@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test coverage dist docs help install lint lint/flake8 lint/black
+.PHONY: clean clean-build clean-pyc clean-test coverage dist docs help install lint lint/flake8 lint/black train serve containerize run_mlflow_server
 .DEFAULT_GOAL := help
 SHELL := /bin/bash
 
@@ -22,10 +22,25 @@ for line in sys.stdin:
 endef
 export PRINT_HELP_PYSCRIPT
 
-BROWSER := python -c "$$BROWSER_PYSCRIPT"
+BROWSER := python3 -c "$$BROWSER_PYSCRIPT"
 
 help:
-	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@python3 -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+
+# Project specific make commands
+train: ## Run a model training
+	poetry run train
+
+serve: ## Serve the latest trained model using BentoML
+	poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
+
+containerize: ## Containerize the latest trained model using BentoML
+	poetry run bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
+
+run_mlflow_server: ## Run a local MLFlow tracking server to view training results and saved models
+	poetry run mlflow server --host 127.0.0.1 --port 8080
+
+# Utility make commands
 
 clean: clean-build clean-pyc clean-test clean-venv ## remove all build, test, coverage and Python artifacts
 
@@ -68,15 +83,15 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source bentoml_mlflow_demo -m pytest
-	coverage report -m
-	coverage html
+	poetry run coverage run --source bentoml_mlflow_demo -m pytest
+	poetry run coverage report -m
+	poetry run coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/bentoml_mlflow_demo.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ bentoml_mlflow_demo
+	poetry run sphinx-apidoc -o docs/ bentoml_mlflow_demo
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
@@ -88,8 +103,8 @@ release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	poetry run python setup.py sdist
+	poetry run python setup.py bdist_wheel
 	ls -l dist
 
 setup-install: clean ## install the package to the active Python's site-packages
@@ -97,15 +112,3 @@ setup-install: clean ## install the package to the active Python's site-packages
 
 install: clean
 	poetry install -v
-
-train:
-	poetry run train
-
-serve:
-	poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
-
-containerize:
-	poetry run bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
-
-run_mlflow_server:
-	poetry run mlflow server --host 127.0.0.1 --port 8080

@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = python -msphinx
+SPHINXBUILD   = poetry run python3 -msphinx
 SPHINXPROJ    = bentoml_mlflow_demo
 SOURCEDIR     = .
 BUILDDIR      = _build

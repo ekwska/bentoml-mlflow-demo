@@ -21,10 +21,11 @@ mlflow = "2.8.0"
 pytest = "^5.2"
 tox = "*"
 coverage = "*"
-Sphinx = "*"
 twine = "*"
 black = "*"
 flake8 = "*"
+sphinx = "^7.2.6"
+sphinx_rtd_theme = { version = "^0.4.3", optional = true  }
 
 [[tool.poetry.source]]
 name = "torch_cpu"
