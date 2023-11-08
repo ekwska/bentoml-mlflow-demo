@@ -68,7 +68,7 @@ MLFLow tracking server 👁️
 Running training 🏋️️
 ###########
 
-- Run a training session with :code:`make train`. In the terminal, you should see:
+- In a seperate terminal, run a training session with :code:`make train`. In the terminal, you should see:
 
 .. code-block:: bash
 
@@ -111,7 +111,7 @@ Serving a model 🍦
 Containerize a model 🐋
 ###########
 
-- Containerize the model using BentoML with :code:`make containerize`, it should look something like this:
+- In another terminal, you can containerize the model using BentoML with :code:`make containerize`, it should look something like this:
 
 .. code-block:: bash
 
