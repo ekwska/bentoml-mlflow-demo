@@ -6,13 +6,12 @@ A project to run a full end to end ML system, using MLFlow for tracking, and Ben
 
 
 * Free software: MIT license
-* Documentation: https://airflow-bento-mlflow-mnist-project.readthedocs.io.
-
 
 Features
 --------
 
 * Trains a model on the MNIST dataset to classify images of handwritten digits.
+* Uses MLFlow as a backend tracking server to log metrics, parameters and models for development.
 * Deploys a containerized bento of the trained model to serve predictions.
 
 Installation
