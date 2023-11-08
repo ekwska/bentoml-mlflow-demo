@@ -145,6 +145,26 @@ Steps
         What's Next?
           View summary of image vulnerabilities and recommendations → docker scout quickview
 
+- After this, you should see the model available in :code:`docker`:
+
+.. code-block:: bash
+
+   $ docker image list
+    REPOSITORY      TAG                IMAGE ID       CREATED          SIZE
+    mnist_service   5lnkpsd6mcbhuomx   5e8ec1f5c28b   45 minutes ago   569MB
+
+- And the model serving (in the same way as we ran :code:`make serve` locally earlier) can be run using:
+
+.. code-block:: bash
+
+    $ docker run -it --rm -p 3000:3000 mnist_service:5lnkpsd6mcbhuomx serve
+        2023-11-08T19:12:36+0000 [INFO] [cli] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:7cjja5t6ncbhuomx", path="/home/bentoml/bento/")
+        2023-11-08T19:12:36+0000 [INFO] [cli] Environ for worker 0: set CPU thread count to 16
+        2023-11-08T19:12:36+0000 [INFO] [cli] Prometheus metrics for HTTP BentoServer from "/home/bentoml/bento" can be accessed at http://localhost:3000/metrics.
+        2023-11-08T19:12:36+0000 [INFO] [cli] Starting production HTTP BentoServer from "/home/bentoml/bento" listening on http://0.0.0.0:3000 (Press CTRL+C to quit)
+        2023-11-08T19:12:40+0000 [INFO] [api_server:1] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:7cjja5t6ncbhuomx", path="/home/bentoml/bento/")
+
+
 - To render the documentation in browser, open a seperate terminal and run :code:`make servedocs`. From there you can explore the documentation in your browser.
 
 Credits 📃
