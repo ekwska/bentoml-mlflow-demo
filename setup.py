@@ -26,10 +26,10 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.11',
     ],
-    description="A project to run a full end to end ML system, using MLFlow for tracking, Airflow for pipeline construction and BentoML for packaging,",
+    description="A project to run a full end to end ML system, using MLFlow for tracking and BentoML for packaging.",
     entry_points={
         'console_scripts': [
-            'bentoml_mlflow_demo=bentoml_mlflow_demo.main:main',
+            'bentoml_mlflow_demo=bentoml_mlflow_demo.train:main',
         ],
     },
     install_requires=requirements,

@@ -2,21 +2,7 @@
 bentoml_mlflow_demo
 ==================================
 
-
-.. image:: https://img.shields.io/pypi/v/bentoml_mlflow_demo.svg
-        :target: https://pypi.python.org/pypi/bentoml_mlflow_demo
-
-.. image:: https://img.shields.io/travis/ekwska/bentoml_mlflow_demo.svg
-        :target: https://travis-ci.com/ekwska/bentoml_mlflow_demo
-
-.. image:: https://readthedocs.org/projects/airflow-bento-mlflow-mnist-project/badge/?version=latest
-        :target: https://airflow-bento-mlflow-mnist-project.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
-
-
-
-
-A project to run a full end to end ML system, using MLFlow for tracking, Airflow for pipeline construction and BentoML for packaging.
+A project to run a full end to end ML system, using MLFlow for tracking, and BentoML for packaging and serving.
 
 
 * Free software: MIT license
@@ -38,18 +24,21 @@ Development
 System dependencies
 *******************
 
-- Python 3.11
+- Python 3.10 or higher
 - Docker
 - BentoML
 - Virtual environment
+- Poetry
 
 Steps
 *****
 
-1. Creates a virtual environment and installs in development mode with :code:`make install`
-3. Run a training session with :code:`make train`
-4. Test out the server with :code:`make serve`
-5. Containerize the model with :code:`bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize`
+1. Install the project in development mode with :code:`make install`
+2. In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server.
+3. In your browser, open http://localhost:8080 and you should see the MLFlow tracking server running.
+4. Run a training session with :code:`make train`
+5. Test out the server with :code:`make serve`
+6. Containerize the model using BentoML with :code:`make containerize`
 
 
 Credits

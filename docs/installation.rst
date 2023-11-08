@@ -4,26 +4,7 @@
 Installation
 ============
 
-
-Stable release
---------------
-
-To install bentoml_mlflow_demo, run this command in your terminal:
-
-.. code-block:: console
-
-    $ pip install bentoml_mlflow_demo
-
-This is the preferred method to install bentoml_mlflow_demo, as it will always install the most recent stable release.
-
-If you don't have `pip`_ installed, this `Python installation guide`_ can guide
-you through the process.
-
-.. _pip: https://pip.pypa.io
-.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
-
-
-From sources
+From source
 ------------
 
 The sources for bentoml_mlflow_demo can be downloaded from the `Github repo`_.
@@ -40,11 +21,11 @@ Or download the `tarball`_:
 
     $ curl -OJL https://github.com/ekwska/bentoml_mlflow_demo/tarball/master
 
-Once you have a copy of the source, you can install it with:
+Once you have a copy of the source, you can install it with :code:`Poetry`:
 
 .. code-block:: console
 
-    $ python setup.py install
+    $ make install
 
 
 .. _Github repo: https://github.com/ekwska/bentoml_mlflow_demo
