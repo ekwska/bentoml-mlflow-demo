@@ -160,11 +160,11 @@ Steps
 .. code-block:: bash
 
     $ docker run -it --rm -p 3000:3000 mnist_service:5lnkpsd6mcbhuomx serve
-        2023-11-08T19:12:36+0000 [INFO] [cli] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:7cjja5t6ncbhuomx", path="/home/bentoml/bento/")
+        2023-11-08T19:12:36+0000 [INFO] [cli] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:5lnkpsd6mcbhuomx", path="/home/bentoml/bento/")
         2023-11-08T19:12:36+0000 [INFO] [cli] Environ for worker 0: set CPU thread count to 16
         2023-11-08T19:12:36+0000 [INFO] [cli] Prometheus metrics for HTTP BentoServer from "/home/bentoml/bento" can be accessed at http://localhost:3000/metrics.
         2023-11-08T19:12:36+0000 [INFO] [cli] Starting production HTTP BentoServer from "/home/bentoml/bento" listening on http://0.0.0.0:3000 (Press CTRL+C to quit)
-        2023-11-08T19:12:40+0000 [INFO] [api_server:1] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:7cjja5t6ncbhuomx", path="/home/bentoml/bento/")
+        2023-11-08T19:12:40+0000 [INFO] [api_server:1] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:5lnkpsd6mcbhuomx", path="/home/bentoml/bento/")
 
 - Navigate to http://0.0.0.0:3000 and follow the steps as before to upload an image.
 - To render the documentation in browser, open a seperate terminal and run :code:`make servedocs`. From there you can explore the documentation in your browser.
