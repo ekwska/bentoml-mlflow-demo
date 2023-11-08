@@ -1,6 +1,8 @@
+# Project specific
+test_images/
+
 # Editing
 .editorconfig
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
