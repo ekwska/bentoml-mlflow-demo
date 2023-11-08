@@ -2,11 +2,11 @@
 BentoML and MLFlow Integration Demo
 ==================================
 
-A project to run a full end to end ML system, using MLFlow for tracking, and BentoML for packaging and serving. For
+A project to run a full end to end ML system, using MLFlow for tracking, and BentoML for packaging and serving. 🍣 For
 this project I just used a simple MNIST network (as the results aren't important) as this project was for
 demonstrating an integration between BentoML and MLFlow and how they could be used together.
 
-It was interesting to use BentoML for the first time and I'd like to explore how to use it more in a production setting.
+It was interesting to use BentoML, especially for the model containerization, and I'd like to explore how to use it more in a production setting.
 
 
 Features ⭐
@@ -34,9 +34,8 @@ System dependencies
 Steps
 *****
 
-1. Install the project in development mode with :code:`make install`
-2. In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal
-output should look something like:
+- Install the project in development mode with :code:`make install`
+- In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal output should look something like:
 
 .. code-block:: bash
     $ make run_mlflow_server
@@ -50,7 +49,7 @@ output should look something like:
     [2023-11-08 16:13:20 +0000] [149242] [INFO] Booting worker with pid: 149242
     [2023-11-08 17:17:49 +0000] [149201] [INFO] Handling signal: winch
 
-3. In your browser, open http://localhost:8080 and you should see the MLFlow tracking server running.
+- In your browser, open http://localhost:8080 and you should see the MLFlow tracking server running.
 
 .. figure:: docs/images/mlflow_ui.png
 
@@ -58,7 +57,7 @@ output should look something like:
 
 .. figure:: docs/images/mlflow_tracking_metric.png
 
-4. Run a training session with :code:`make train`. In the terminal, you should see:
+- Run a training session with :code:`make train`. In the terminal, you should see:
 
 .. code-block:: bash
     $ make train
@@ -73,11 +72,9 @@ output should look something like:
     08-Nov-23 17:52:51 - Train Epoch: 1 [1920/60000 (3%)]   Loss: 2.258119
     08-Nov-23 17:52:51 - Train Epoch: 1 [2560/60000 (4%)]   Loss: 2.279200
 
-5. Once training has finished, you can inspect the latest run under the experiment
-:code:`MNIST BentoML Demo Experiment`
+- Once training has finished, you can inspect the latest run under the experiment :code:`MNIST BentoML Demo Experiment`
 
-6. You can then test out the server with :code:`make serve` and navigating to the localhost address, in this case
-http://0.0.0.0:3000.
+- You can then test out the server with :code:`make serve` and navigating to the localhost address, in this case http://0.0.0.0:3000.
 
 .. code-block:: bash
     $ make serve
@@ -86,18 +83,17 @@ http://0.0.0.0:3000.
     2023-11-08T17:58:45+0000 [INFO] [cli] Prometheus metrics for HTTP BentoServer from "bentoml_service.py:svc" can be accessed at http://localhost:3000/metrics.
     2023-11-08T17:58:45+0000 [INFO] [cli] Starting production HTTP BentoServer from "bentoml_service.py:svc" listening on http://0.0.0.0:3000 (Press CTRL+C to quit)
 
-In the UI, lick on :code:`Predict` and then :code:`Try it out`.
+- In the UI, click on :code:`Predict` and then :code:`Try it out`.
 
 .. image:: docs/images/bentoml_interface.png
   :alt: An image showing the BentoML API interface for interacting with a served model.
 
-Then you can upload an image for the model to classify. There are test images located in :code:`/test_images`. After
-uploading the image, you should see the successful classification response.
+- Then you can upload an image for the model to classify. There are test images located in :code:`/test_images`. After uploading the image, you should see the successful classification response.
 
 .. image:: docs/images/successful_classification.png
   :alt: An image showing the BentoML API interface when a model has made a correct classification.
 
-7. Containerize the model using BentoML with :code:`make containerize`, it should look something like this:
+- Containerize the model using BentoML with :code:`make containerize`, it should look something like this:
 
 .. code-block:: bash
 
@@ -147,7 +143,7 @@ uploading the image, you should see the successful classification response.
         What's Next?
           View summary of image vulnerabilities and recommendations → docker scout quickview
 
-8. To render the documentation in browser, open a seperate terminal and run:
+- To render the documentation in browser, open a seperate terminal and run:
 
 .. code-block:: bash
     make servedocs
