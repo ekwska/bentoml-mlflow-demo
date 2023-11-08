@@ -12,7 +12,7 @@ import bentoml
 if TYPE_CHECKING:
     from numpy.typing import NDArray
 
-mnist_runner = bentoml.pytorch.get("23-09-23-16_39_mnist:oc5oqas2e6jhsblo").to_runner()
+mnist_runner = bentoml.pytorch.get("mnist:latest").to_runner()
 
 svc = bentoml.Service(name="mnist_service", runners=[mnist_runner])
 

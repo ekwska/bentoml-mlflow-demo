@@ -9,4 +9,4 @@ python:
    - numpy
    - Pillow
 models: # The model to be used for building the Bento.
-- 23-09-23-16_39_mnist:oc5oqas2e6jhsblo
+- mnist:latest
