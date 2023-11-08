@@ -6,7 +6,9 @@ A project to run a full end to end ML system, using MLFlow for tracking, and Ben
 this project I just used a simple MNIST network (as the results aren't important) as this project was for
 demonstrating an integration between BentoML and MLFlow and how they could be used together.
 
-It was interesting to use BentoML, especially for the model containerization, and I'd like to explore how to use it more in a production setting.
+It was interesting to use BentoML, especially for the model containerization, and I'd like to explore how to use it more
+in a production setting. I liked the fact that you can package all the dependencies into a docker image with an easy
+entrypoint automatically. 🐋
 
 
 Features ⭐
@@ -164,7 +166,7 @@ Steps
         2023-11-08T19:12:36+0000 [INFO] [cli] Starting production HTTP BentoServer from "/home/bentoml/bento" listening on http://0.0.0.0:3000 (Press CTRL+C to quit)
         2023-11-08T19:12:40+0000 [INFO] [api_server:1] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:7cjja5t6ncbhuomx", path="/home/bentoml/bento/")
 
-
+- Navigate to http://0.0.0.0:3000 and follow the steps as before to upload an image.
 - To render the documentation in browser, open a seperate terminal and run :code:`make servedocs`. From there you can explore the documentation in your browser.
 
 Credits 📃
