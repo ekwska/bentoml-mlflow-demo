@@ -2,7 +2,7 @@
 from __future__ import print_function
 import torch
 import logging
-from mnist import (
+from bentoml_mlflow_demo.mnist import (
     parse_args,
     create_train_test_loaders,
     Net,
