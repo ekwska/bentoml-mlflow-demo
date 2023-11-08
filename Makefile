@@ -52,11 +52,14 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	flake8 bentoml_mlflow_demo tests
+	poetry run flake8 bentoml_mlflow_demo tests
 lint/black: ## check style with black
-	black --check bentoml_mlflow_demo tests
+	poetry run black --check bentoml_mlflow_demo tests
 
-lint: lint/flake8 lint/black ## check style
+lint: lint/black lint/flake8 ## check style
+
+format:
+	poetry run black bentoml_mlflow_demo tests
 
 test: ## run tests quickly with the default Python
 	pytest
@@ -93,9 +96,7 @@ setup-install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
 install: clean
-	python3.9 -m venv .venv
-	source .venv/bin/activate; \
-	pip install -r requirements.txt; \
+	poetry install -v
 
 train:
 	poetry run run_training
