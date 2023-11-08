@@ -5,7 +5,7 @@
 import pytest
 
 
-from bentoml_mlflow_demo import main
+from bentoml_mlflow_demo import train
 
 
 @pytest.fixture
