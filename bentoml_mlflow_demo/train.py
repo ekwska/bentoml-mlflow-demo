@@ -3,12 +3,15 @@ from __future__ import print_function
 import torch
 import logging
 from bentoml_mlflow_demo.mnist import (
-    parse_args,
-    create_train_test_loaders,
     Net,
     train,
     test,
     save_bentoml_model,
+)
+
+from bentoml_mlflow_demo.utils import (
+    parse_args,
+    create_train_test_loaders,
 )
 
 
