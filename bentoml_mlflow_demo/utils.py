@@ -107,8 +107,6 @@ def create_train_test_loaders(
         shuffle=True,
         **kwargs,
     )
-    logging.info(train_loader)
-    logging.info(test_loader)
     return train_loader, test_loader
 
 
