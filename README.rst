@@ -47,8 +47,8 @@ Steps
 *****
 
 1. Creates a virtual environment and installs in development mode with :code:`make install`
-3. Run a training session with :code:`python3 bentoml_mlflow_demo/main.py`
-4. Test out the server with :code:`bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload`
+3. Run a training session with :code:`make train`
+4. Test out the server with :code:`make serve`
 5. Containerize the model with :code:`bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize`
 
 
