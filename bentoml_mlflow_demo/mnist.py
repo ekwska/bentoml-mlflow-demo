@@ -72,9 +72,11 @@ def parse_args():
     return parsed_args, kwargs
 
 
-def create_train_test_loaders(args: argparse.ArgumentParser, kwargs: dict) -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
-    """
-    Create train or test loaders using required parameters.
+def create_train_test_loaders(
+    args: argparse.ArgumentParser, kwargs: dict
+) -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
+    """Create train or test loaders using required parameters.
+
     Args:
         args: Only the `batch_size` argument needs to be set to create the train/test data loaders.
         kwargs: Any additional keyword arguments to pass to the data loader initialization.
@@ -132,7 +134,23 @@ class Net(nn.Module):
         return F.log_softmax(x)
 
 
-def train(model, args, train_epoch, train_loader):
+def train(
+    model: Net,
+    args: argparse.ArgumentParser,
+    train_epoch: int,
+    train_loader: torch.utils.data.DataLoader,
+) -> Net:
+    """Run a single epoch of training of the MNIST model.
+
+    Args:
+        model: Torch model object to run training with.
+        args: Argument parser to set hyperparameters with.
+        train_epoch: Current training epoch.
+        train_loader: Training data loader of the validation set.
+
+    Returns: MNIST model trained for a single epoch.
+
+    """
     logging.info("Training model")
     train_optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     model.train()
@@ -158,7 +176,19 @@ def train(model, args, train_epoch, train_loader):
     return model
 
 
-def test(model, args, test_loader):
+def test(
+    model: Net, args: argparse.ArgumentParser, test_loader: torch.utils.data.DataLoader
+) -> None:
+    """Run validation of a model using a test data loader.
+
+    Args:
+        model: Torch model object to run training with.
+        args: Argument parser to set hyperparameters with.
+        test_loader: Testing data loader of the validation set.
+
+    Returns: None
+
+    """
     logging.info("Testing model")
     model.eval()
     test_loss = 0
@@ -186,6 +216,14 @@ def test(model, args, test_loader):
 
 
 def save_bentoml_model(model):
-    model_name = datetime.now().strftime("%d-%m-%y-%H_%M_mnist")
+    """
+
+    Args:
+        model:
+
+    Returns:
+
+    """
+    model_name = datetime.now().strftime("mnist")
     save_model(model_name, model)
     logging.info(f"Model saved under name '{model_name}")
