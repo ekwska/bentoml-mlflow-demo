@@ -1,23 +1,22 @@
 ==================================
-bentoml_mlflow_demo
+BentoML and MLFlow Integration Demo
 ==================================
 
-A project to run a full end to end ML system, using MLFlow for tracking, and BentoML for packaging and serving.
+A project to run a full end to end ML system, using MLFlow for tracking, and BentoML for packaging and serving. For
+this project I just used a simple MNIST network (as the results aren't important) as this project was for
+demonstrating an integration between BentoML and MLFlow and how they could be used together.
 
-
-* Free software: MIT license
-
-Features
+Features ⭐
 --------
 
 * Trains a model on the MNIST dataset to classify images of handwritten digits.
 * Uses MLFlow as a backend tracking server to log metrics, parameters and models for development.
 * Deploys a containerized bento of the trained model to serve predictions.
 
-Installation
+Installation 🖥️
 ------------
 
-Development
+Development ✍️
 ###########
 
 System dependencies
@@ -40,10 +39,14 @@ Steps
 6. Containerize the model using BentoML with :code:`make containerize`
 
 
-Credits
+Credits 📃
 -------
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+----
+
+Example MNIST code inspired from https://github.com/bentoml/BentoML/tree/main/examples/pytorch_mnist.
