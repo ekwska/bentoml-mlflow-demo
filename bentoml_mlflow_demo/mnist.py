@@ -119,6 +119,10 @@ def create_train_test_loaders(
 
 
 class Net(nn.Module):
+    """
+    A simple convolutional network for classifying MNIST images.
+    """
+
     def __init__(self):
         super(Net, self).__init__()
         self.conv1 = nn.Conv2d(1, 10, kernel_size=5)
@@ -218,13 +222,13 @@ def test(
     )
 
 
-def save_bentoml_model(model):
-    """
+def save_bentoml_model(model: Net) -> None:
+    """Save a trained model in bentoML format.
 
     Args:
-        model:
+        model: Trained MNIST model.
 
-    Returns:
+    Returns: None.
 
     """
     model_name = datetime.now().strftime("mnist")
