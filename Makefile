@@ -35,7 +35,7 @@ serve: ## Serve the latest trained model using BentoML
 	poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
 
 containerize: ## Containerize the latest trained model using BentoML
-	poetry run bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
+	poetry run bentoml build -f bentofile.yaml --containerize
 
 run_mlflow_server: ## Run a local MLFlow tracking server to view training results and saved models
 	poetry run mlflow server --host 127.0.0.1 --port 8080
