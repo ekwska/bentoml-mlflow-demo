@@ -38,6 +38,7 @@ Steps
 - In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal output should look something like:
 
 .. code-block:: bash
+
     $ make run_mlflow_server
     poetry run mlflow server --host 127.0.0.1 --port 8080
     [2023-11-08 16:13:20 +0000] [149201] [INFO] Starting gunicorn 21.2.0
