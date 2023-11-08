@@ -5,6 +5,7 @@ Helper utility functions for running training and configuration management.
 from __future__ import print_function
 import argparse
 import logging
+import mlflow
 import torch
 from torchvision import datasets, transforms
 from typing import Tuple
@@ -72,8 +73,8 @@ def create_train_test_loaders(
     """Create train or test loaders using required parameters.
 
     Args:
-        args: Only the `batch_size` argument needs to be set to create the
-         train/test data loaders.
+        args: Argparse object - only the `batch_size` argument needs to be
+         set to create the train/test data loaders.
         kwargs: Any additional keyword arguments to pass to the data loader
          initialization.
 
@@ -109,3 +110,17 @@ def create_train_test_loaders(
     logging.info(train_loader)
     logging.info(test_loader)
     return train_loader, test_loader
+
+
+def log_mlflow_hyperparameters(args: argparse.ArgumentParser) -> None:
+    """Iteratively log parameters to an MLFLow tracking server
+     in an argparser object.
+
+    Args:
+        args: Argument parser to extract parameters to log from.
+
+    Returns: None
+
+    """
+    for arg in vars(args):
+        mlflow.log_param(arg, getattr(args, arg))

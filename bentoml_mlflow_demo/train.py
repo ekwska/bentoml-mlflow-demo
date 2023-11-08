@@ -2,6 +2,8 @@
 
 from __future__ import print_function
 import torch
+import mlflow
+import os
 import logging
 from bentoml_mlflow_demo.mnist import (
     Net,
@@ -13,6 +15,7 @@ from bentoml_mlflow_demo.mnist import (
 from bentoml_mlflow_demo.utils import (
     parse_args,
     create_train_test_loaders,
+    log_mlflow_hyperparameters,
 )
 
 
@@ -37,10 +40,21 @@ def main() -> None:
     if args.cuda:
         model.cuda()
 
+    # Setup MLFlow
+    mlflow.set_tracking_uri("http://127.0.0.1:8080")
+    mlflow.set_experiment("MNIST BentoML Demo Experiment")
+
+    # Begin training
+    mlflow.start_run()
+    log_mlflow_hyperparameters(args)
     for epoch in range(1, args.epochs + 1):
         model = train(model, args, epoch, training_loader)
-        test(model, args, testing_loader)
-
+        test(model, args, testing_loader, epoch)
+    mlflow.pytorch.log_model(model, artifact_path="mnist_classifier")
+    logging.info(
+        f"Model logged at: {os.path.join(mlflow.get_artifact_uri(), 'mnist_classifier')}"
+    )
+    mlflow.end_run()
     save_bentoml_model(model)
 
 

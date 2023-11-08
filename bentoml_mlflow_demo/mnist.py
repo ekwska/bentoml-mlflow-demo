@@ -5,6 +5,7 @@ CNN model code to run a simple classification and allow for saving in BentoML fo
 from __future__ import print_function
 import argparse
 import logging
+import mlflow
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -57,6 +58,7 @@ def train(
     logging.info("Training model")
     train_optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=args.momentum)
     model.train()
+    average_loss = 0
     for batch_idx, (data, target) in enumerate(train_loader):
         if args.cuda:
             data, target = data.cuda(), target.cuda()
@@ -66,6 +68,7 @@ def train(
         loss = F.nll_loss(output, target)
         loss.backward()
         train_optimizer.step()
+        average_loss += loss.data.item()
         if batch_idx % args.log_interval == 0:
             logging.info(
                 "Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(
@@ -76,11 +79,24 @@ def train(
                     loss.data.item(),
                 )
             )
+            step = train_epoch * len(train_loader) + batch_idx
+            mlflow.log_metric(
+                "Negative Log Liklihood Loss - Iteration",
+                loss.data.item(),
+                step=step,
+            )
+    average_loss /= len(train_loader)
+    mlflow.log_metric(
+        "Negative Log Liklihood Loss - Epoch", loss.data.item(), step=train_epoch
+    )
     return model
 
 
 def test(
-    model: Net, args: argparse.ArgumentParser, test_loader: torch.utils.data.DataLoader
+    model: Net,
+    args: argparse.ArgumentParser,
+    test_loader: torch.utils.data.DataLoader,
+    test_epoch: int,
 ) -> None:
     """Run validation of a model using a test data loader.
 
@@ -116,6 +132,8 @@ def test(
             100.0 * correct / len(test_loader.dataset),
         )
     )
+    step = (test_epoch + 1) * len(test_loader)
+    mlflow.log_metric("Negative Log Liklihood Loss - Test", test_loss, step=step)
 
 
 def save_bentoml_model(model: Net) -> None:
