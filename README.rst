@@ -60,6 +60,7 @@ Steps
 - Run a training session with :code:`make train`. In the terminal, you should see:
 
 .. code-block:: bash
+
     $ make train
     poetry run train
     08-Nov-23 17:52:50 - Create train and test loaders...
