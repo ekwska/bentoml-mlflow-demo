@@ -1,5 +1,6 @@
 # Project specific
 test_images/
+mlruns/
 
 # Editing
 .editorconfig

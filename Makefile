@@ -106,3 +106,6 @@ serve:
 
 containerize:
 	poetry run bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
+
+run_mlflow_server:
+	poetry run mlflow server --host 127.0.0.1 --port 8080
