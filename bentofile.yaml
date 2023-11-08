@@ -1,10 +1,9 @@
 service: "bentoml_service.py:svc"  # Same as the argument passed to `bentoml serve`
-description: "file: ./README.rst"
 labels:
    owner: ekwska
    stage: dev
 include:
-    - "*.py"  # A pattern for matching which files to include in the Bento
+    - "*.py"
 exclude:
   - "tests/"
 python:
@@ -12,5 +11,6 @@ python:
    - "numpy"
    - "Pillow"
    - "torchvision==0.16.0 --extra-index-url https://download.pytorch.org/whl/cpu"
+   - "mlflow==2.8.0"
 models: # The model to be used for building the Bento.
 - mnist:latest
