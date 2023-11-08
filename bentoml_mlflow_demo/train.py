@@ -17,7 +17,12 @@ logging.basicConfig(
 )
 
 
-def main():
+def main() -> None:
+    """Run training of a simple CNN and save it in BentoML model format, using
+     CLI arguments to control the hyperparameters.
+
+    Returns: None
+    """
     args, kwargs = parse_args()
     torch.manual_seed(args.seed)
     if args.cuda:
