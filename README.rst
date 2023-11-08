@@ -33,10 +33,16 @@ System dependencies
 
 Install the project in development mode with :code:`make install`
 
+Running the project
+--------
+
+Follow the steps below in each section to run a model training and validation using MLFlow for tracking, and then package
+and containerize the model using BentoML for easy deployment.
+
 MLFLow tracking server 👁️
 ###########
 
-- In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal output should look something like:
+- First, in a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal output should look something like:
 
 .. code-block:: bash
 
