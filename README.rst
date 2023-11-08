@@ -93,7 +93,7 @@ Serving a model 🍦
 
 .. code-block:: bash
     $ make serve
-    poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
+    poetry run bentoml serve bentoml_service.py:svc --reload
     2023-11-08T17:58:45+0000 [INFO] [cli] Environ for worker 0: set CPU thread count to 16
     2023-11-08T17:58:45+0000 [INFO] [cli] Prometheus metrics for HTTP BentoServer from "bentoml_service.py:svc" can be accessed at http://localhost:3000/metrics.
     2023-11-08T17:58:45+0000 [INFO] [cli] Starting production HTTP BentoServer from "bentoml_service.py:svc" listening on http://0.0.0.0:3000 (Press CTRL+C to quit)
@@ -116,7 +116,7 @@ Containerize a model 🐋
 .. code-block:: bash
 
     $ make containerize
-    poetry run bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
+    poetry run bentoml build -f bentofile.yaml --containerize
     Locking PyPI package versions.
     WARNING: --strip-extras is becoming the default in version 8.0.0. To silence this warning, either use --strip-extras to opt into the new default or use --no-strip-extras to retain the existing behavior.
 

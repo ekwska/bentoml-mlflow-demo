@@ -32,7 +32,7 @@ train: ## Run a model training
 	poetry run train
 
 serve: ## Serve the latest trained model using BentoML
-	poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
+	poetry run bentoml serve bentoml_service.py:svc --reload
 
 containerize: ## Containerize the latest trained model using BentoML
 	poetry run bentoml build -f bentofile.yaml --containerize
