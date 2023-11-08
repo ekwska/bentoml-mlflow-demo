@@ -1,6 +1,5 @@
 """
-Example code from
-https://github.com/lanpa/tensorboard-pytorch-examples/blob/master/mnist/main.py
+CNN model code to run a simple classification and allow for saving in BentoML format.
 """
 
 from __future__ import print_function

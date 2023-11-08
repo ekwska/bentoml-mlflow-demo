@@ -1,6 +1,5 @@
 """
-Example code from
-https://github.com/lanpa/tensorboard-pytorch-examples/blob/master/mnist/main.py
+Helper utility functions for running training and configuration management.
 """
 
 from __future__ import print_function
