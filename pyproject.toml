@@ -6,8 +6,8 @@ authors = ["ekwska <ekwiecinska55@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-torch = "*"
-torchvision = "*"
+torch = { version = "2.1.0+cpu", source = "torch_cpu"}
+torchvision = { version = "0.16.0+cpu", source = "torch_cpu" }
 bentoml = {version = "*", extras = ["io-image"]}
 pip = "*"
 bump2version = "*"
@@ -24,6 +24,11 @@ Sphinx = "*"
 twine = "*"
 black = "*"
 flake8 = "*"
+
+[[tool.poetry.source]]
+name = "torch_cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "supplemental"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
