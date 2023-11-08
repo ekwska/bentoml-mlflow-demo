@@ -143,12 +143,7 @@ Steps
         What's Next?
           View summary of image vulnerabilities and recommendations → docker scout quickview
 
-- To render the documentation in browser, open a seperate terminal and run:
-
-.. code-block:: bash
-    make servedocs
-
-- From there you can explore the documentation in your browser.
+- To render the documentation in browser, open a seperate terminal and run :code:`make servedocs`. From there you can explore the documentation in your browser.
 
 Credits 📃
 -------
