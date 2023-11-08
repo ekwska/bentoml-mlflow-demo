@@ -1,4 +1,4 @@
-* airflow_bento_mlflow_mnist_project version:
+* bentoml_mlflow_demo version:
 * Python version:
 * Operating System:
 

@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use airflow_bento_mlflow_mnist_project in a project::
+To use bentoml_mlflow_demo in a project::
 
-    import airflow_bento_mlflow_mnist_project
+    import bentoml_mlflow_demo

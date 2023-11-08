@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=airflow_bento_mlflow_mnist_project
+set SPHINXPROJ=bentoml_mlflow_demo
 
 if "%1" == "" goto help
 

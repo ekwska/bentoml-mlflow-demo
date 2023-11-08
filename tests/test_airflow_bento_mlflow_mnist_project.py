@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-"""Tests for `airflow_bento_mlflow_mnist_project` package."""
+"""Tests for `bentoml_mlflow_demo` package."""
 
 import pytest
 
 
-from airflow_bento_mlflow_mnist_project import main
+from bentoml_mlflow_demo import main
 
 
 @pytest.fixture

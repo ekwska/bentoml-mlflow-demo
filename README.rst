@@ -1,13 +1,13 @@
 ==================================
-airflow_bento_mlflow_mnist_project
+bentoml_mlflow_demo
 ==================================
 
 
-.. image:: https://img.shields.io/pypi/v/airflow_bento_mlflow_mnist_project.svg
-        :target: https://pypi.python.org/pypi/airflow_bento_mlflow_mnist_project
+.. image:: https://img.shields.io/pypi/v/bentoml_mlflow_demo.svg
+        :target: https://pypi.python.org/pypi/bentoml_mlflow_demo
 
-.. image:: https://img.shields.io/travis/ekwska/airflow_bento_mlflow_mnist_project.svg
-        :target: https://travis-ci.com/ekwska/airflow_bento_mlflow_mnist_project
+.. image:: https://img.shields.io/travis/ekwska/bentoml_mlflow_demo.svg
+        :target: https://travis-ci.com/ekwska/bentoml_mlflow_demo
 
 .. image:: https://readthedocs.org/projects/airflow-bento-mlflow-mnist-project/badge/?version=latest
         :target: https://airflow-bento-mlflow-mnist-project.readthedocs.io/en/latest/?version=latest
@@ -46,12 +46,10 @@ System dependencies
 Steps
 *****
 
-1. Create a virtual environment :code:`python3.11 -m venv .venv`
-2. Activate the virtual environment with :code:`.venv/bin/activate`
-2. Install the development packages with :code:`pip install -r requirements.txt`
-3. Run a training session with :code:`python3 airflow_bento_mlflow_mnist_project/main.py`
-4. Test out the server with :code:`bentoml serve bentoml_service.py:svc --working-dir airflow_bento_mlflow_mnist_project --reload`
-5. Containerize the model with :code:`bentoml build -f bentofile.yaml airflow_bento_mlflow_mnist_project --containerize`
+1. Creates a virtual environment and installs in development mode with :code:`make install`
+3. Run a training session with :code:`python3 bentoml_mlflow_demo/main.py`
+4. Test out the server with :code:`bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload`
+5. Containerize the model with :code:`bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize`
 
 
 Credits

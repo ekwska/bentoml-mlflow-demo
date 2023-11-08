@@ -1,4 +1,4 @@
-Welcome to airflow_bento_mlflow_mnist_project's documentation!
+Welcome to bentoml_mlflow_demo's documentation!
 ======================================
 
 .. toctree::

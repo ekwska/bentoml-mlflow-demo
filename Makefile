@@ -1,5 +1,6 @@
 .PHONY: clean clean-build clean-pyc clean-test coverage dist docs help install lint lint/flake8 lint/black
 .DEFAULT_GOAL := help
+SHELL := /bin/bash
 
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
@@ -26,7 +27,10 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
+clean: clean-build clean-pyc clean-test clean-venv ## remove all build, test, coverage and Python artifacts
+
+clean-venv: ## Remove virtual environment
+	rm -rf .venv
 
 clean-build: ## remove build artifacts
 	rm -fr build/
@@ -48,9 +52,9 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .pytest_cache
 
 lint/flake8: ## check style with flake8
-	flake8 airflow_bento_mlflow_mnist_project tests
+	flake8 bentoml_mlflow_demo tests
 lint/black: ## check style with black
-	black --check airflow_bento_mlflow_mnist_project tests
+	black --check bentoml_mlflow_demo tests
 
 lint: lint/flake8 lint/black ## check style
 
@@ -61,15 +65,15 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source airflow_bento_mlflow_mnist_project -m pytest
+	coverage run --source bentoml_mlflow_demo -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/airflow_bento_mlflow_mnist_project.rst
+	rm -f docs/bentoml_mlflow_demo.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ airflow_bento_mlflow_mnist_project
+	sphinx-apidoc -o docs/ bentoml_mlflow_demo
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
@@ -85,5 +89,16 @@ dist: clean ## builds source and wheel package
 	python setup.py bdist_wheel
 	ls -l dist
 
-install: clean ## install the package to the active Python's site-packages
+setup-install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+install: clean
+	python3.11 -m venv .venv
+	source .venv/bin/activate; \
+	pip install -r requirements.txt; \
+
+bento_serve:
+	bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
+
+bento_containerize:
+	bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize

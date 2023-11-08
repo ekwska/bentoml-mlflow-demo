@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = airflow_bento_mlflow_mnist_project
+SPHINXPROJ    = bentoml_mlflow_demo
 SOURCEDIR     = .
 BUILDDIR      = _build
 

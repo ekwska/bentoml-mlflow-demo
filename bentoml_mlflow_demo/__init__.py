@@ -1,4 +1,4 @@
-"""Top-level package for airflow_bento_mlflow_mnist_project."""
+"""Top-level package for bentoml_mlflow_demo."""
 
 __author__ = """ekwska"""
 __email__ = "ekwska0@protonmail.com"

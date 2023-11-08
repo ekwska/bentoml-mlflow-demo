@@ -13,6 +13,7 @@ from torchvision import datasets, transforms
 from torch.autograd import Variable
 from bentoml.pytorch import save_model
 from datetime import datetime
+from typing import Tuple
 
 
 def parse_args():
@@ -71,7 +72,16 @@ def parse_args():
     return parsed_args, kwargs
 
 
-def create_train_test_loaders(args, kwargs):
+def create_train_test_loaders(args: argparse.ArgumentParser, kwargs: dict) -> Tuple[torch.utils.data.DataLoader, torch.utils.data.DataLoader]:
+    """
+    Create train or test loaders using required parameters.
+    Args:
+        args: Only the `batch_size` argument needs to be set to create the train/test data loaders.
+        kwargs: Any additional keyword arguments to pass to the data loader initialization.
+
+    Returns: Training loader and testing loader.
+
+    """
     logging.info("Create train and test loaders...")
     train_loader = torch.utils.data.DataLoader(
         datasets.MNIST(
