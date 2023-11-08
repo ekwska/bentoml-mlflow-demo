@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "bentoml_mlflow_demo"
+version = "0.1.0"
+description = ""
+authors = ["ekwska <ekwiecinska55@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+torch = "*"
+torchvision = "*"
+bentoml = {version = "*", extras = ["io-image"]}
+pip = "*"
+bump2version = "*"
+wheel = "*"
+watchdog = "*"
+Pillow = "*"
+numpy = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+tox = "*"
+coverage = "*"
+Sphinx = "*"
+twine = "*"
+black = "*"
+flake8 = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+run_training = "python3 bentoml_mlflow_demo/main.py:main"
