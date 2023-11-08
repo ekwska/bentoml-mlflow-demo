@@ -10,7 +10,6 @@ It was interesting to use BentoML, especially for the model containerization, an
 in a production setting. I liked the fact that you can package all the dependencies into a docker image with an easy
 entrypoint automatically. 🐋
 
-
 Features ⭐
 --------
 
@@ -21,11 +20,8 @@ Features ⭐
 Installation 🖥️
 ------------
 
-Development ✍️
-###########
-
 System dependencies
-*******************
+###########
 
 - Python 3.10 or higher
 - Docker
@@ -33,10 +29,13 @@ System dependencies
 - Virtual environment
 - Poetry
 
-Steps
+------------
+
+Install the project in development mode with :code:`make install`
+
+MLFLow tracking server 👁️
 ###########
 
-- Install the project in development mode with :code:`make install`
 - In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal output should look something like:
 
 .. code-block:: bash
@@ -60,6 +59,9 @@ Steps
 
 .. figure:: docs/images/mlflow_tracking_metric.png
 
+Running training 🏋️️
+###########
+
 - Run a training session with :code:`make train`. In the terminal, you should see:
 
 .. code-block:: bash
@@ -77,6 +79,9 @@ Steps
     08-Nov-23 17:52:51 - Train Epoch: 1 [2560/60000 (4%)]   Loss: 2.279200
 
 - Once training has finished, you can inspect the latest run under the experiment :code:`MNIST BentoML Demo Experiment`
+
+Serving a model 🍦
+###########
 
 - You can then test out the server with :code:`make serve` and navigating to the localhost address, in this case http://0.0.0.0:3000.
 
@@ -96,6 +101,9 @@ Steps
 
 .. image:: docs/images/successful_classification.png
   :alt: An image showing the BentoML API interface when a model has made a correct classification.
+
+Containerize a model 🐋
+###########
 
 - Containerize the model using BentoML with :code:`make containerize`, it should look something like this:
 
@@ -167,6 +175,10 @@ Steps
         2023-11-08T19:12:40+0000 [INFO] [api_server:1] Service loaded from Bento directory: bentoml.Service(tag="mnist_service:5lnkpsd6mcbhuomx", path="/home/bentoml/bento/")
 
 - Navigate to http://0.0.0.0:3000 and follow the steps as before to upload an image.
+
+Documentation 📚
+###########
+
 - To render the documentation in browser, open a seperate terminal and run :code:`make servedocs`. From there you can explore the documentation in your browser.
 
 Credits 📃
