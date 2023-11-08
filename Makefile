@@ -93,12 +93,15 @@ setup-install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
 install: clean
-	python3.11 -m venv .venv
+	python3.9 -m venv .venv
 	source .venv/bin/activate; \
 	pip install -r requirements.txt; \
 
-bento_serve:
-	bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
+train:
+	poetry run run_training
 
-bento_containerize:
-	bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
+serve:
+	poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
+
+containerize:
+	poetry run bentoml build -f bentofile.yaml bentoml_mlflow_demo --containerize
