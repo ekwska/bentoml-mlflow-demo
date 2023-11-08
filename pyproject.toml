@@ -15,6 +15,7 @@ wheel = "*"
 watchdog = "*"
 Pillow = "*"
 numpy = "*"
+mlflow = "2.8.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
