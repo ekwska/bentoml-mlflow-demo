@@ -5,9 +5,6 @@
 import pytest
 
 
-from bentoml_mlflow_demo import train
-
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.

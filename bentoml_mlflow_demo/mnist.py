@@ -1,5 +1,6 @@
 """
-Example code from https://github.com/lanpa/tensorboard-pytorch-examples/blob/master/mnist/main.py
+Example code from
+https://github.com/lanpa/tensorboard-pytorch-examples/blob/master/mnist/main.py
 """
 
 from __future__ import print_function
@@ -78,8 +79,10 @@ def create_train_test_loaders(
     """Create train or test loaders using required parameters.
 
     Args:
-        args: Only the `batch_size` argument needs to be set to create the train/test data loaders.
-        kwargs: Any additional keyword arguments to pass to the data loader initialization.
+        args: Only the `batch_size` argument needs to be set to create the
+         train/test data loaders.
+        kwargs: Any additional keyword arguments to pass to the data loader
+         initialization.
 
     Returns: Training loader and testing loader.
 
