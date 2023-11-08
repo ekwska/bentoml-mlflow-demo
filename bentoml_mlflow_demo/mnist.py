@@ -129,4 +129,4 @@ def save_bentoml_model(model: Net) -> None:
     """
     model_name = datetime.now().strftime("mnist")
     save_model(model_name, model)
-    logging.info(f"Model saved under name '{model_name}")
+    logging.info(f"Model saved under name '{model_name}'")
