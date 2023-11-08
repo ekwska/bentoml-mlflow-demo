@@ -32,7 +32,7 @@ System dependencies
 - Poetry
 
 Steps
-*****
+###########
 
 - Install the project in development mode with :code:`make install`
 - In a seperate terminal, run :code:`make run_mlflow_server` to spin up a locally served MLFLow server. The terminal output should look something like:
@@ -147,6 +147,8 @@ Steps
 
 .. code-block:: bash
     make servedocs
+
+- From there you can explore the documentation in your browser.
 
 Credits 📃
 -------
