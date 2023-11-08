@@ -99,7 +99,7 @@ install: clean
 	poetry install -v
 
 train:
-	poetry run run_training
+	poetry run train
 
 serve:
 	poetry run bentoml serve bentoml_service.py:svc --working-dir bentoml_mlflow_demo --reload
